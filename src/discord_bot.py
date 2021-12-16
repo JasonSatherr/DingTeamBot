@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 from decouple import config
 import asyncio
+from camera import Camera
 
 class DiscordBot:
     def __init__(self) -> None:
@@ -53,11 +54,13 @@ class DiscordBot:
             await self.bot.close()
 
         @self.bot.command()
-        async def dripPic(ctx):  #Be sure to disable this command or make it admin exclusive...
+        async def dripPic(ctx, filename = 'drip'):  #Be sure to disable this command or make it admin exclusive...
             """Close the bot 3 seconds after it's ready, just for the sake of the example."""
             await ctx.send("Making a drip pic")
-            self.stream.seek(0)
-            dripPic = discord.File(fp=self.stream, filename='drip.jpeg', spoiler=False)
+            cam = Camera()
+            stream = cam.getPictureStream()
+            stream.seek(0)
+            dripPic = discord.File(fp=stream, filename=str(filename)+'.jpeg', spoiler=False)
             await ctx.send(file = dripPic)
             
 
