@@ -5,12 +5,12 @@ import numpy as np
 # Create the in-memory stream
 
 class FaceFinder:
-    def __init__(self) -> None:
+    def __init__(self) -> None:  #we need to handle the cold start ig
         self.facesFound = 0  #make private!!
         self.processedPhoto = BytesIO()
         self.face_cascade = cv2.CascadeClassifier('./model/haarcascade_frontalface_default.xml')
 
-    def __processPhoto(self, stream):
+    def processPhoto(self, stream):
         data = np.frombuffer(stream.getvalue(), dtype=np.uint8)
         image = cv2.imdecode(data, 1)
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -43,6 +43,8 @@ class FaceFinder:
 
     def getProcessedPhoto(self):
         return self.processedPhoto
+
+    
 
     
 

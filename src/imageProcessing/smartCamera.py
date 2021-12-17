@@ -36,7 +36,10 @@ class smartCamera(Camera, FaceFinder):
     def updateFaceCount(self):
         self.analyzeForBareFaces()
         #self.analyzeForMaskedFaces()
-        
+    
+    def getBasePicture(self):
+        self.basePicture.seek(0)
+        return self.basePicture
 
     def getNumBareFaces(self):
         return self.bareFaces
