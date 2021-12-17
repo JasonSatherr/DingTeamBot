@@ -17,13 +17,14 @@ class FaceFinder:
         faces = self.face_cascade.detectMultiScale(gray, 1.1, 9) #neighbors hyperparameter
         self.__setFaceCount(len(faces))
         #When it's higher, it reduces the chance of a false +
-
-        
+        image = self.__drawFaceBoxes(image,faces)
+        self.__setProcessedPhoto(self.__getStreamFromCVImage(image))
         #cv2.imwrite("./photos/sather.jpeg", image)
 
     def __getStreamFromCVImage(self,image):
         is_success, buffer = cv2.imencode(".jpg", image)
         io_buf = BytesIO(buffer)
+        return io_buf
 
     def __drawFaceBoxes(self, image, faces):
         for (x, y, w, h) in faces:  #draw the faces  #if we make a parent class for this and...
@@ -34,8 +35,14 @@ class FaceFinder:
     def __setFaceCount(self, numFaces):
         self.facesFound = numFaces
 
+    def __setProcessedPhoto(self, processedPhoto):
+        self.processedPhoto = processedPhoto
+
     def getFaceCount(self):
         return self.facesFound
+
+    def getProcessedPhoto(self):
+        return self.processedPhoto
 
     
 
