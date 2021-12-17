@@ -1,3 +1,4 @@
+from io import BytesIO
 import cv2
 import numpy as np
 
@@ -5,26 +6,40 @@ import numpy as np
 
 class FaceFinder:
     def __init__(self) -> None:
-        self.facesFound = 0
+        self.facesFound = 0  #make private!!
+        self.processedPhoto = BytesIO()
+        self.face_cascade = cv2.CascadeClassifier('./model/haarcascade_frontalface_default.xml')
 
     def __processPhoto(self, stream):
         data = np.frombuffer(stream.getvalue(), dtype=np.uint8)
         image = cv2.imdecode(data, 1)
-        face_cascade = cv2.CascadeClassifier('./model/haarcascade_frontalface_default.xml')
-        # image = cv2.imread("./forever_photos/sather.jpeg")
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        faces = face_cascade.detectMultiScale(gray, 1.1, 9) #neighbors hyperparameter
-        self.facesFound = len(faces)
+        faces = self.face_cascade.detectMultiScale(gray, 1.1, 9) #neighbors hyperparameter
+        self.__setFaceCount(len(faces))
         #When it's higher, it reduces the chance of a false +
 
-        # for (x, y, w, h) in faces:
-        #     cv2.rectangle(image, (x, y), (x+w, y+h), (255, 0, 0), 2)
-        # cv2.imwrite("./photos/sather.jpeg", image)
+        
+        #cv2.imwrite("./photos/sather.jpeg", image)
 
-    def __getFaceCount(self):
+    def __getStreamFromCVImage(self,image):
+        is_success, buffer = cv2.imencode(".jpg", image)
+        io_buf = BytesIO(buffer)
+
+    def __drawFaceBoxes(self, image, faces):
+        for (x, y, w, h) in faces:  #draw the faces  #if we make a parent class for this and...
+            #maskFinder, then this is certainly a parent's method...
+            cv2.rectangle(image, (x, y), (x+w, y+h), (255, 0, 0), 2)
+        return image
+
+    def __setFaceCount(self, numFaces):
+        self.facesFound = numFaces
+
+    def getFaceCount(self):
         return self.facesFound
 
-    def getNumFacesFromImage(self, stream):
-        self.__processPhoto(stream)
-        return self.__getFaceCount()
+    
+
+    # def getNumFacesFromImage(self, stream):
+    #     self.__processPhoto(stream)
+    #     return self.__getFaceCount()
         
