@@ -4,8 +4,8 @@ from decouple import config
 import asyncio
 import sys
 sys.path.append('./src/imageProcessing')
-from camera import Camera
-from face_detector import FaceFinder
+from smartCamera import smartCamera
+
 
 class DiscordBot:
     def __init__(self) -> None:
@@ -14,7 +14,7 @@ class DiscordBot:
 
         (Tu won't let me call her an e-girl)'''
         intents = discord.Intents.default()
-
+        self.smartCamera = smartCamera()
         self.bot = commands.Bot(command_prefix='?', description=description, intents=intents)
         self.setupEvents()
         self.setupCommands()
