@@ -60,30 +60,20 @@ class DiscordBot:
         async def dripPic(ctx, filename = 'drip'):  #Be sure to disable this command or make it admin exclusive...
             """Close the bot 3 seconds after it's ready, just for the sake of the example."""
             await ctx.send("Making a drip pic")
-            cam = Camera()
-            stream = cam.getPictureStream()
-            stream.seek(0)
-            dripPic = discord.File(fp=stream, filename=str(filename)+'.jpeg', spoiler=False)
+            
+            self.smartCamera.getNewPicture()
+            pic = self.smartCamera.getBasePicture()
+            dripPic = discord.File(fp=pic, filename=str(filename)+'.jpeg', spoiler=False)
             await ctx.send(file = dripPic)
 
         @self.bot.command()
         async def orwell(ctx, filename = 'drip'):  #Be sure to disable this command or make it admin exclusive...
             """Close the bot 3 seconds after it's ready, just for the sake of the example."""
             await ctx.send("Making a orwell pic")
-            cam = Camera()
-            stream = cam.getPictureStream()
-            faceFinder = FaceFinder()
-            numFaces = faceFinder.getNumFacesFromImage(stream)
-            print('we found '+ str(numFaces)+ ' faces')
-            stream.seek(0)
-            dripPic = discord.File(fp=stream, filename=str(filename)+'.jpeg', spoiler=False)
-            await ctx.send(file = dripPic)
-
             
+            # print('we found '+ str(self.smartCamera.getNumBareFaces())+ ' faces')
+            # stream.seek(0)
+            # dripPic = discord.File(fp=stream, filename=str(filename)+'.jpeg', spoiler=False)
+            # await ctx.send(file = dripPic)
 
     
-
-
-
-
-
