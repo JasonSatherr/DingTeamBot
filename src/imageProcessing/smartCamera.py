@@ -4,15 +4,14 @@ from face_detector import FaceFinder
 
 
 
-class smartCamera(Camera, FaceFinder):
+class smartCamera(Camera):
     def __init__(self) -> None:
         '''Constructor for smart Camera
 
         
         '''
         super().__init__()
-        # self.camera = Camera()
-        # self.faceDetector = FaceFinder()
+        self.faceFinder = FaceFinder()  #smart camera has a face finder
         self.bareFaces = 0          #number of non-masked faces the camera detects
         self.maskedFaces = 0        #number of masked faces that the camera detects
         self.basePicture = BytesIO()          #Cached image ig
@@ -31,7 +30,7 @@ class smartCamera(Camera, FaceFinder):
 
     def analyzeForBareFaces(self): 
         #else use the old picture, whatever that maybe
-        self.bareFaces = self.getNumFacesFromImage(self.basePicture)
+        self.bareFaces = self.faceFinder.processPhoto(self.basePicture)
         #make a way to extract the pic that open cv makes...
 
     def updateFaceCount(self):
