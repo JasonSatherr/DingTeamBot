@@ -4,16 +4,19 @@ from face_detector import FaceFinder
 
 
 
-class smartCamera(Camera, FaceFinder):
+class smartCamera(FaceFinder, Camera):
     def __init__(self) -> None:
         '''Constructor for smart Camera
 
         
         '''
-        super().__init__()
+        super(smartCamera, self).__init__()
         # self.camera = Camera()
         # self.faceDetector = FaceFinder()
-        
+        if( hasattr(self, 'face_cascade')):
+            print("We have have a face detector :>")
+        else:
+            print("We no have a face detector :<")
         self.bareFaces = 0          #number of non-masked faces the camera detects
         self.maskedFaces = 0        #number of masked faces that the camera detects
         self.basePicture = BytesIO()          #Cached image ig

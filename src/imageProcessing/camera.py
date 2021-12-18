@@ -7,6 +7,7 @@ import numpy as np
 # Create the in-memory stream
 class Camera:
     def __init__(self) -> None:
+        print("hello")
         pass
 
     def getPictureStream(self):

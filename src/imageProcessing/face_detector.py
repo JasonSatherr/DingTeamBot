@@ -9,6 +9,7 @@ class FaceFinder:
         self.facesFound = 0  #make private!!
         self.processedPhoto = BytesIO()
         self.face_cascade = cv2.CascadeClassifier('./model/haarcascade_frontalface_default.xml')
+        print("Face construct")
 
     def processPhoto(self, stream):
         data = np.frombuffer(stream.getvalue(), dtype=np.uint8)
