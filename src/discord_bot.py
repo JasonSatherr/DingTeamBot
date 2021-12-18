@@ -70,7 +70,7 @@ class DiscordBot:
             """Close the bot 3 seconds after it's ready, just for the sake of the example."""
             await ctx.send("Making a orwell pic")
             self.smartCamera.takeNewPicture()
-            pic = self.smartCamera.getProcessedPhoto()
+            pic = self.smartCamera.getProcessedPhotoBare()
             dripPic = discord.File(fp=pic, filename=str(filename)+'.jpeg', spoiler=False)
             await ctx.send(file = dripPic)
             await ctx.send(f'We found {self.smartCamera.getNumBareFaces()} faces.')
