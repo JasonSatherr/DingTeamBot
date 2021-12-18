@@ -22,9 +22,9 @@ class smartCamera(FaceFinder, Camera):
         self.basePicture.seek(0)
         self.basePicture.truncate(0)
 
-    def takeNewPicture(self):  #gets a new pic and then performs analysis on them...
+    def takeNewPicture(self,mode):  #gets a new pic and then performs analysis on them...
         self.purgeStream()
-        self.basePicture = self.getPictureStream()
+        self.basePicture = self.getPictureStream(mode)
         self.__processPhoto()
 
 

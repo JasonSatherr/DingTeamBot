@@ -7,7 +7,7 @@ sys.path.append('./src/imageProcessing')
 from smartCamera import smartCamera
 
 
-class DiscordBot:
+class DiscordBot:  #should have inherited from bot....  idiot mode activated...
     def __init__(self) -> None:
             
         description = '''Coolest Boba Bot ever.
@@ -26,7 +26,7 @@ class DiscordBot:
 
     # @tasks.loop(seconds=6) # task runs every 60 seconds
     # async def my_annoying_task(self):
-    #     channel = self.bot.get_channel(920905958090240021) # channel ID goes here
+    #     channel = self.bot.get_channel(self.CHANNEL) # channel ID goes here
     #     await channel.send("are you annoyed yet?")
     #     print("sent")
 
@@ -72,16 +72,16 @@ class DiscordBot:
             await self.bot.close()
 
         @self.bot.command()
-        async def dripPic(ctx, filename = 'drip', mode):  #Be sure to disable this command or make it admin exclusive...
+        async def dripPic(ctx, mode = None, filename = 'drip'):  #Be sure to disable this command or make it admin exclusive...
             """Close the bot 3 seconds after it's ready, just for the sake of the example."""
             await ctx.send("Making a drip pic")
-            self.smartCamera.takeNewPicture()
+            self.smartCamera.takeNewPicture(mode)
             pic = self.smartCamera.getBasePicture()
             dripPic = discord.File(fp=pic, filename=str(filename)+'.jpeg', spoiler=False)
             await ctx.send(file = dripPic)
 
         @self.bot.command()
-        async def orwell(ctx, filename = 'drip'):  #Be sure to disable this command or make it admin exclusive...
+        async def orwell(ctx, filename = 'orwell'):  #Be sure to disable this command or make it admin exclusive...
             """Close the bot 3 seconds after it's ready, just for the sake of the example."""
             await ctx.send("Making a orwell pic")
             self.smartCamera.takeNewPicture()

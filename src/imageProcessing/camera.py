@@ -10,10 +10,13 @@ class Camera:
         print("hello")
         pass
 
-    def getPictureStream(self):
+    def getPictureStream(self,mode):
         stream = io.BytesIO()
         with picamera.PiCamera() as camera:
-            camera.start_preview()
+            if isinstance(mode, str):
+                if mode.lower() == 'sun' or mode.lower() == 'sunlight':
+                    camera.awb_mode = 'sunlight'
+                    print("SUN MODE")
             time.sleep(2)
             camera.capture(stream, format='jpeg')
         return stream
