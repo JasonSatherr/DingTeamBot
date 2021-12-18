@@ -61,7 +61,7 @@ class DiscordBot:
             """Close the bot 3 seconds after it's ready, just for the sake of the example."""
             await ctx.send("Making a drip pic")
             
-            self.smartCamera.getNewPicture()
+            self.smartCamera.takeNewPicture()
             pic = self.smartCamera.getBasePicture()
             dripPic = discord.File(fp=pic, filename=str(filename)+'.jpeg', spoiler=False)
             await ctx.send(file = dripPic)
