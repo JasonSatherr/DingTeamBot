@@ -6,11 +6,11 @@ from discord_bot import DiscordBot
 def main():
     """The main file will run everything
     """
-    camTest = cameraTester()
-    camTest.runAWBTests()
+    # camTest = cameraTester()
+    # camTest.runAWBTests()
 
-    # discordBot = DiscordBot()
-    # discordBot.start()
+    discordBot = DiscordBot()
+    discordBot.start()
     
 
 
