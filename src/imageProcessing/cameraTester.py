@@ -12,3 +12,5 @@ class cameraTester:
                 time.sleep(2)
                 camera.capture('./photos/'+str(mode)+'foo.jpeg')
                 print("snap")
+                #'sunlight is a good mode'
+                
