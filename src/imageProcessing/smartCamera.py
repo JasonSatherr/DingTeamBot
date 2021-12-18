@@ -10,13 +10,7 @@ class smartCamera(FaceFinder, Camera):
 
         
         '''
-        super(smartCamera, self).__init__()
-        # self.camera = Camera()
-        # self.faceDetector = FaceFinder()
-        if( hasattr(self, 'face_cascade')):
-            print("We have have a face detector :>")
-        else:
-            print("We no have a face detector :<")
+        self.faceFinder = FaceFinder()
         self.bareFaces = 0          #number of non-masked faces the camera detects
         self.maskedFaces = 0        #number of masked faces that the camera detects
         self.basePicture = BytesIO()          #Cached image ig
@@ -35,8 +29,9 @@ class smartCamera(FaceFinder, Camera):
 
     def analyzeForBareFaces(self): 
         #else use the old picture, whatever that maybe
-        self.bareFaces = self.processPhoto(self.basePicture)  #THIS WILL CHANGE WHEN
+        self.faceFinder.processPhoto(self.basePicture)  #THIS WILL CHANGE WHEN
         #INCORPORATING THE MASKS FEATURE
+        self.bareFaces = self.faceFinder.getFaceCount()
         #make a way to extract the pic that open cv makes...
 
     def updateFaceCount(self):
@@ -46,6 +41,11 @@ class smartCamera(FaceFinder, Camera):
     def getBasePicture(self):
         self.basePicture.seek(0)
         return self.basePicture
+
+    def getProcessedPhoto(self):
+        image = self.faceFinder.getProcessedPhoto()
+        image.seek(0)
+        return image
 
     def getNumBareFaces(self):
         return self.bareFaces
