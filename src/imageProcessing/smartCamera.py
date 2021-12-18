@@ -25,27 +25,28 @@ class smartCamera(FaceFinder, Camera):
     def takeNewPicture(self):  #gets a new pic and then performs analysis on them...
         self.purgeStream()
         self.basePicture = self.getPictureStream()
-        self.updateFaceCount()
+        self.__processPhoto()
 
-    def analyzeForBareFaces(self): 
-        #else use the old picture, whatever that maybe
-        self.faceFinder.processPhoto(self.basePicture)  #THIS WILL CHANGE WHEN
-        #INCORPORATING THE MASKS FEATURE
+
+    def __processPhoto(self):
+        self.__analyzeForBareFaces()
+        self.__setProcessedPhotoBare()
+        # self.analyzeForMaskedFaces()
+
+    def __analyzeForBareFaces(self): 
+        self.faceFinder.processPhoto(self.basePicture)
         self.bareFaces = self.faceFinder.getFaceCount()
-        #make a way to extract the pic that open cv makes...
 
-    def updateFaceCount(self):
-        self.analyzeForBareFaces()
-        #self.analyzeForMaskedFaces()
+    def __setProcessedPhotoBare(self):
+        self.processedPhotoBare = self.faceFinder.getProcessedPhoto()
+        self.processedPhotoBare.seek(0)
     
     def getBasePicture(self):
         self.basePicture.seek(0)
         return self.basePicture
 
-    def getProcessedPhoto(self):
-        image = self.faceFinder.getProcessedPhoto()
-        image.seek(0)
-        return image
+    def getProcessedPhotoBare(self):
+        return self.processedPhotoBare
 
     def getNumBareFaces(self):
         return self.bareFaces
