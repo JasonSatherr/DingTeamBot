@@ -10,6 +10,7 @@ class smartCamera(Camera, FaceFinder):
 
         
         '''
+        super().__init__()
         # self.camera = Camera()
         # self.faceDetector = FaceFinder()
         self.bareFaces = 0          #number of non-masked faces the camera detects
