@@ -81,10 +81,10 @@ class DiscordBot:  #should have inherited from bot....  idiot mode activated...
             await ctx.send(file = dripPic)
 
         @self.bot.command()
-        async def orwell(ctx, filename = 'orwell'):  #Be sure to disable this command or make it admin exclusive...
+        async def orwell(ctx, mode= None,filename = 'orwell'):  #Be sure to disable this command or make it admin exclusive...
             """Close the bot 3 seconds after it's ready, just for the sake of the example."""
             await ctx.send("Making a orwell pic")
-            self.smartCamera.takeNewPicture()
+            self.smartCamera.takeNewPicture(mode)
             pic = self.smartCamera.getProcessedPhotoBare()
             dripPic = discord.File(fp=pic, filename=str(filename)+'.jpeg', spoiler=False)
             await ctx.send(file = dripPic)
