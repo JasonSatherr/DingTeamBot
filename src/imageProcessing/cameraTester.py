@@ -5,8 +5,9 @@ class cameraTester:
     def __init__(self) -> None:
         pass
     def runAWBTests(self):
-        with picamera.PiCamera() as camera:
-            camera.resolution = (1024, 768)
+        with picamera.PiCamera(resolution =(1920,1080)) as camera:
+            # camera.resolution = (1920,1080)
+            # 
             # for mode in camera.AWB_MODES:
                 
             #     camera.awb_mode = mode

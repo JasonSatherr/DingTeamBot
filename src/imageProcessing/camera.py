@@ -12,7 +12,7 @@ class Camera:
 
     def getPictureStream(self,mode):
         stream = io.BytesIO()
-        with picamera.PiCamera() as camera:
+        with picamera.PiCamera(resolution =(1920,1080)) as camera:
             if isinstance(mode, str):
                 if mode.lower() == 'sun' or mode.lower() == 'sunlight':
                     camera.awb_mode = 'sunlight'

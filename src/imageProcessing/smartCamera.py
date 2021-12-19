@@ -1,16 +1,16 @@
 from io import BytesIO
 from camera import Camera
 from face_detector import FaceFinder
+from person_detector import PersonDetector
 
 
-
-class smartCamera(FaceFinder, Camera):
+class smartCamera(Camera):  #facefinder....
     def __init__(self) -> None:
         '''Constructor for smart Camera
 
         
         '''
-        self.faceFinder = FaceFinder()
+        self.faceFinder = PersonDetector()   #face finder...
         self.bareFaces = 0          #number of non-masked faces the camera detects
         self.maskedFaces = 0        #number of masked faces that the camera detects
         self.basePicture = BytesIO()          #Cached image ig
