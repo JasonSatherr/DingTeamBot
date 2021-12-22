@@ -77,5 +77,17 @@ class Detector(ABC):
             #maskFinder, then this is certainly a parent's method...
             cv2.rectangle(image, (x, y), (x+w, y+h), (255, 0, 0), 2)
         return image
+    
+    @abstractmethod
+    def processPhoto(self, stream):
+        '''Returns processed image
 
+        This class will take a BytesIO stream, convert it to a CV mat and
+        then perform analysis on the photo to detect the features that need
+        to be detected
+        
+        Args:
+            stream: a bytes IO stream that will be transformed into a
+                CV mat for image processing on'''
+        pass
         
