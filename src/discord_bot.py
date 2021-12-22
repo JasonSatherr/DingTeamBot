@@ -5,14 +5,14 @@ import asyncio
 import sys
 sys.path.append('./src/imageProcessing')
 from smartCamera import smartCamera
-
+#COGS HELP REDUCE THE LENGTH OF THE FILE
 
 class DiscordBot:  #should have inherited from bot....  idiot mode activated...
-    def __init__(self) -> None:
+    def __init__(self) -> None:  
             
         description = '''Coolest Boba Bot ever.
 
-        (Tu won't let me call her an e-girl)'''
+        '''
         intents = discord.Intents.default()
         self.smartCamera = smartCamera()
         self.bot = commands.Bot(command_prefix='?', description=description, intents=intents)
@@ -39,7 +39,7 @@ class DiscordBot:  #should have inherited from bot....  idiot mode activated...
     def start(self):
         DISCORD_TOKEN = config('DISCORD_TOKEN')
         self.bot.run(DISCORD_TOKEN)
-
+    
     def setupEvents(self):
         @self.bot.event
         async def on_ready():
