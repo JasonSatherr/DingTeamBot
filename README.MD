@@ -14,4 +14,21 @@ so that we can hang out in the bathroom and be aware of the store's business.
   - Record the token given to us.  This will be important later when we put it into a .env file.
 4. Once the pi has arrived, you need to configure the raspberry pi to be able to connect to wifi or the ethernet as we will be doing most of our work through SSH.
   - If you're planning to run a completely headless build, follow this [article](https://www.seeedstudio.com/blog/2021/01/25/three-methods-to-configure-raspberry-pi-wifi/)
-5. 
+5. If working in a headless environment, set up VS code on the rpi and your own system so that you can SSH into the the rpi from your main work environment. [As shown here](https://code.visualstudio.com/docs/remote/ssh)
+6. Make sure you can [take pictures](https://roboticsbackend.com/raspberry-pi-camera-take-picture/)
+7. Next, we want to fork the repo.
+8. Then, create a .env file at the root of the repo.  Inside write
+    DISCORD_TOKEN=YOUR_DISCORD_TOKEN_FROM_STEP_2
+8. Finally, we can run main.py
+9. Congrats, your bot is now online and ready to snap pics 📸
+
+---
+# Fun time! 🥳
+Use the command
+  ?dripPic
+To have the camera take a picture of you!
+
+Use the command
+  ?orwell
+To have the camera take a picture and analyze for faces!
+
