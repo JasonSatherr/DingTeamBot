@@ -4,6 +4,10 @@ Create a bot that will use the small foot print and portability of the raspberry
 figure out how many people are in line at ding tea.  Then post the information to the discord channel
 so that we can hang out in the bathroom and be aware of the store's business.
 
+## Recent showcase of the bot!
+
+![The bot in action](./forever_photos/DiscordBotFaceDetecting.PNG)
+
 ## Setup
 ---
 1. You need a raspberry pi with a camera module.
