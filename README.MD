@@ -12,6 +12,7 @@ so that we can hang out in the bathroom and be aware of the store's business.
 2.  Next, you will need to create a discord bot.
   - Go to (this page)[https://discordpy.readthedocs.io/en/stable/discord.html] to figure out how to create a discord bot.
   - Record the token given to us.  This will be important later when we put it into a .env file.
+  - Add your new favorite discord bot to your discord server.
 4. Once the pi has arrived, you need to configure the raspberry pi to be able to connect to wifi or the ethernet as we will be doing most of our work through SSH.
   - If you're planning to run a completely headless build, follow this [article](https://www.seeedstudio.com/blog/2021/01/25/three-methods-to-configure-raspberry-pi-wifi/)
 5. If working in a headless environment, set up VS code on the rpi and your own system so that you can SSH into the the rpi from your main work environment. [As shown here](https://code.visualstudio.com/docs/remote/ssh)
@@ -26,9 +27,9 @@ so that we can hang out in the bathroom and be aware of the store's business.
 # Fun time! 🥳
 Use the command
   ?dripPic
-To have the camera take a picture of you!
+in discord To have the camera take a picture of you!
 
 Use the command
   ?orwell
-To have the camera take a picture and analyze for faces!
+in discord To have the camera take a picture and analyze for faces!
 
